@@ -99,6 +99,7 @@ int InserareInainte(TLista *aL, int e, int ref) {
 
 ## Inserare la sfarsitul listei
 
+```c
 int InsSfL(TLista *aL, int e) {
 	TLista p = *aL, aux, ultim = NULL;
 
@@ -120,3 +121,4 @@ int InsSfL(TLista *aL, int e) {
 
 	return 1;
 }
+```
