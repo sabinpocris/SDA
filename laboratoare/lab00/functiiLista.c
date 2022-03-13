@@ -1,5 +1,6 @@
 /*-- functiiLista.c --*/
 #include <ctype.h>
+#include <stdio.h>
 #include "tlista.h"
 
 /*--- operatii de baza pentru lista simplu inlantuita ---*/
@@ -108,3 +109,4 @@ int ex3(TLista list1, TLista list2) {
 
 	return 0;
 }
+
