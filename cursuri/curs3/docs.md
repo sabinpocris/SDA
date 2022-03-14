@@ -46,27 +46,38 @@ TLista CitireL(int *lg) {
 	TLista L = NULL, u, aux;
 	int x;
 	char ch;
+
 	for (*lg = 0; scanf("%i", &x) == 1;)
 	{
-		aux = AlocCelula(x); /* incearca inserarea valorii citite */
-		if (!aux)
-			return L; /* alocare esuata => sfarsit citire */
+		aux = AlocCelula(x);
+		
+        if (!aux)
+			break;
+        
+        (*lg)++;
+
 		if (L == NULL)
 			L = aux;
 		else
 			u->urm = aux;
-		u = aux;
-		(*lg)++;
+		
+        u = aux;		
 	}
 
-	while ((ch = getchar()) != EOF && ch != '\n')
-		;
-	return L; /* intoarce lista rezultat */
+	return L;
 }
 ```
 
-## Eliminare element
+## Distrugere lista
 
 ```c
+void DistrugereL(TLista *aL) {
+    TLista aux;
 
+    while (*aL) {
+        aux = *aL;
+        *aL = aux->urm;
+        free(aux);
+    }
+}
 ```
