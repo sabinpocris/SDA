@@ -22,9 +22,8 @@ void   DistrugeL (TLista*);       /* elimina toate celulele din lista */
 
 void AfisareL (TLista L);
 
-void ex1(TLista);
-int ex2(TLista, int);
-int ex3(TLista, TLista);
+TLista ex1(TLista, int, int, int *);
+TLista ex2(TLista *, int, int *);
 
 int sameParity(int, int);
 

@@ -32,6 +32,8 @@ int main()
 	TLista tempLista = NULL;
 	int lx;			 /* lungime lista */
 	int exNumber = 0;
+    int lowerBound = 0, upperBound = 0;
+    int k = 0;
 
 	for (;;)
 	{
@@ -48,29 +50,39 @@ int main()
 		getchar(); // flush the stdin
 
 		switch (exNumber) {
-		case 1:
-			ex1(x);
+		case 1:          
+            printf("[a, b]: a = ");
+            scanf("%i", &lowerBound);
+
+            printf("b = ");
+			scanf("%d", &upperBound);
+
+            tempLista = ex1(x , lowerBound, upperBound, &lx);
+
+            printf("=======================");
+            AfisareL(tempLista);
+            printf(" with the count of %d\n", lx);
+            getchar();
 			break;
 
 		case 2:
-			printf("valoare returnata: %d\n", ex2(x, lx));
-			break;
-		
-		case 3:
-			tempLista = CitireL(&lx);
+			printf("k = ");
+            scanf("%d", &k);
+            
+            
+            tempLista = ex2(&x, k, &lx);
+            
+            AfisareL(x);
+            AfisareL(tempLista);
+            printf("%d\n", lx);
 
-			//AfisareL(tempLista);
-
-			if (tempLista == NULL)
-				break;
-
-			printf("valoare returnata: %d\n", ex3(x, tempLista));
-			break;
+            break;
 		}
 
 		/* apeluri functii implementate */
 
 		DistrugeL(&x);
+        
 		printf("\n  Inca un test ? [d/n]");
 		if (getchar() == 'n')
 			break;

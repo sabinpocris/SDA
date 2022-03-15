@@ -47,66 +47,63 @@ int sameParity(int nr1, int nr2) {
 	return 0;
 }
 
-// primim o lista si afisam (i, i+1) cu aceasi paritate
-void ex1(TLista list) {
-	int index = 0;
 
-	for ( ; list != NULL; list = list->urm, index++) {
-		// mai avem perechi?
-		if (list->urm == NULL) {
-			return;
-		}
 
-		if (sameParity(list->info, list->urm->info)) {
-			printf("(%d, %d) - %d %d\n", index, index + 1, list->info, list->urm->info);		
-		}
-	}
+TLista ex1(TLista list, int a, int b, int *count) {
+    TLista tempList = NULL;
+    TCelula *tempCell = NULL, *lastCell = NULL;
+    *count = 0;
+
+    while (list) {
+        if (list->info < a || list->info > b) {
+            list = list->urm;
+        } else {
+            if (tempList == NULL) {
+                tempCell = AlocCelula(list->info);
+                tempList = tempCell;
+            } else {
+                tempCell = AlocCelula(list->info);
+                lastCell->urm = tempCell;
+            }
+            
+            lastCell = tempCell;
+
+            (*count)++;
+            list = list->urm;
+        }
+    }
+
+
+    return tempList;
 }
 
-int ex2(TLista list, int lenght) {
-	// avem 2 jumatati?
-	if (lenght % 2 == 1) {
-		return 0;
-	}
 
-	// keep data values here
-	int values[lenght / 2];
 
-	// storing the first half values
-	for (int i = 0; i < lenght / 2; i++, list = list->urm;)
-	{
-		values[i] = list->info;
-	}
+TLista ex2(TLista *oldList, int div, int *count) {
+	TLista tempList = NULL;
+    TLista *list = oldList;
+    TCelula *lastCell = NULL, *tempCell;
+    
+    for (; (*list) != NULL;) {
+        if ((*list)->info % div != 0) {
+            (*list) = (*list)->urm;
+            continue;
+        }
+        
+        tempCell = AlocCelula((*list)->info);
 
-	// checling the other half
-	for (int i = 0; i < lenght / 2; i++, list = list->urm) {
-		if (values[i] != list->info)
-			return 0;
-	}
+        if (tempList == NULL) {
+            tempList = tempCell;
+        } else {
+            lastCell->urm = tempCell;
 
-	return 1;
+                        
+        }
+
+        lastCell = tempCell;
+        (*list) = (*list)->urm;
+    }
+
+
+    return tempList;
 }
-
-int ex3(TLista list1, TLista list2) {
-	for (; list2 != NULL; list2 = list2->urm) {
-		if (list2->info == list1->info) {
-			int somethingIsNotGuud = 0;
-			TLista temp2 = list2;
-			TLista temp1 = list1;
-			
-			for (; temp2 != NULL && temp1 != NULL; temp2 = temp2->urm, temp1 = temp1->urm) {
-				if (temp2->info != temp1->info) {
-					somethingIsNotGuud = 1;
-					break;
-				}
-			}
-			
-			if (!somethingIsNotGuud) {
-				return 1;
-			}
-		}
-	}
-
-	return 0;
-}
-
