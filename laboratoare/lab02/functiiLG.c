@@ -229,7 +229,18 @@ void ex2C(TLG *list) {
             DistrugeLG(&keep, free_book);
         }
     }
-    
+   
+    if (temp == NULL) {
+        temp = (*list);
+        
+        if (temp->urm == NULL) {
+            return;
+        }
+
+        while (temp->urm->urm)
+            temp = temp->urm;
+    }
+
     if (getYearPubBook(temp->urm->info) >= a &&
                 getYearPubBook(temp->urm->info) <= b) {
             DistrugeLG(&(temp->urm), free_book);
